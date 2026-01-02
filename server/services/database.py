@@ -1,39 +1,89 @@
-import sqlite3
+import psycopg2
+from psycopg2 import pool
 import os
 from datetime import datetime
 
-# Database file path - can be overridden with DB_PATH environment variable
-_default_db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'submissions.db')
-DB_PATH = os.environ.get('DB_PATH', _default_db_path)
+# Database connection string from environment variable
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+# Connection pool for production use
+_connection_pool = None
+
+def get_connection():
+    """
+    Get a database connection from the pool or create a new one.
+    """
+    global _connection_pool
+    
+    if not DATABASE_URL:
+        raise ValueError("DATABASE_URL environment variable is not set")
+    
+    # Create connection pool if it doesn't exist
+    if _connection_pool is None:
+        try:
+            _connection_pool = psycopg2.pool.SimpleConnectionPool(
+                1,  # min connections
+                5,  # max connections
+                DATABASE_URL
+            )
+        except Exception as e:
+            print(f"Error creating connection pool: {e}")
+            raise
+    
+    # Get connection from pool
+    try:
+        return _connection_pool.getconn()
+    except Exception as e:
+        print(f"Error getting connection from pool: {e}")
+        # Fallback to direct connection if pool fails
+        return psycopg2.connect(DATABASE_URL)
+
+def return_connection(conn):
+    """
+    Return a connection to the pool.
+    """
+    global _connection_pool
+    if _connection_pool:
+        _connection_pool.putconn(conn)
+    else:
+        conn.close()
 
 def init_database():
     """
     Initialize the database and create table if it doesn't exist.
     """
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    
-    # Create submissions table if it doesn't exist
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS submissions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            timestamp TEXT NOT NULL,
-            company_name TEXT NOT NULL,
-            role TEXT NOT NULL,
-            email TEXT NOT NULL,
-            website TEXT,
-            task_description TEXT NOT NULL,
-            timeline TEXT NOT NULL,
-            budget TEXT NOT NULL
-        )
-    ''')
-    
-    conn.commit()
-    conn.close()
+    conn = None
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+        
+        # Create submissions table if it doesn't exist
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS submissions (
+                id SERIAL PRIMARY KEY,
+                timestamp TEXT NOT NULL,
+                company_name TEXT NOT NULL,
+                role TEXT NOT NULL,
+                email TEXT NOT NULL,
+                website TEXT,
+                task_description TEXT NOT NULL,
+                timeline TEXT NOT NULL,
+                budget TEXT NOT NULL
+            )
+        ''')
+        
+        conn.commit()
+        cursor.close()
+    except Exception as e:
+        print(f"Error initializing database: {e}")
+        raise
+    finally:
+        if conn:
+            return_connection(conn)
 
 def save_submission(form_data):
     """
-    Save form submission to SQLite database.
+    Save form submission to PostgreSQL database.
     
     Args:
         form_data (dict): Form data with keys:
@@ -48,12 +98,13 @@ def save_submission(form_data):
     Returns:
         bool: True if successful, False otherwise
     """
+    conn = None
     try:
         # Initialize database if needed
         init_database()
         
-        # Connect to database
-        conn = sqlite3.connect(DB_PATH)
+        # Get connection
+        conn = get_connection()
         cursor = conn.cursor()
         
         # Prepare data
@@ -64,7 +115,7 @@ def save_submission(form_data):
             INSERT INTO submissions (
                 timestamp, company_name, role, email, website,
                 task_description, timeline, budget
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         ''', (
             timestamp,
             form_data.get('companyName', ''),
@@ -77,12 +128,15 @@ def save_submission(form_data):
         ))
         
         conn.commit()
-        conn.close()
+        cursor.close()
         
         return True
     except Exception as e:
         print(f"Error saving to database: {e}")
         raise
+    finally:
+        if conn:
+            return_connection(conn)
 
 def get_all_submissions():
     """
@@ -92,8 +146,9 @@ def get_all_submissions():
     Returns:
         list: List of submission dictionaries
     """
+    conn = None
     try:
-        conn = sqlite3.connect(DB_PATH)
+        conn = get_connection()
         cursor = conn.cursor()
         
         cursor.execute('''
@@ -101,7 +156,7 @@ def get_all_submissions():
         ''')
         
         rows = cursor.fetchall()
-        conn.close()
+        cursor.close()
         
         # Convert to list of dictionaries
         submissions = []
@@ -122,4 +177,6 @@ def get_all_submissions():
     except Exception as e:
         print(f"Error getting submissions: {e}")
         raise
-
+    finally:
+        if conn:
+            return_connection(conn)

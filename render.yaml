@@ -12,6 +12,8 @@ services:
         sync: false
       - key: OWNER_EMAIL
         sync: false
+      - key: DATABASE_URL
+        sync: false
       - key: PYTHON_VERSION
         value: 3.11
     # Note: Disk removed for free tier compatibility

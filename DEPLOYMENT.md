@@ -6,6 +6,7 @@ This guide will walk you through deploying your React + Flask application to Ren
 
 - A GitHub account
 - A Render.com account (free tier available)
+- A Supabase account (free tier available)
 - Your code pushed to a GitHub repository
 - Gmail app password (for email functionality)
 
@@ -52,7 +53,39 @@ Render will create two services based on your `render.yaml`:
 - **Build Command**: `npm install && npm run build`
 - **Publish Directory**: `./build`
 
-## Step 5: Configure Environment Variables
+## Step 5: Set Up Supabase Database
+
+Before configuring environment variables, you need to set up your Supabase PostgreSQL database:
+
+1. **Create Supabase Account**
+   - Go to [supabase.com](https://supabase.com)
+   - Sign up for a free account (you can use GitHub to sign in)
+   - Verify your email address
+
+2. **Create New Project**
+   - Click **"New Project"** in the dashboard
+   - Choose an organization (or create one)
+   - Enter project details:
+     - **Name**: Choose a name (e.g., "firsttask-db")
+     - **Database Password**: Create a strong password (save this securely!)
+     - **Region**: Choose closest to your Render deployment
+     - **Pricing Plan**: Free tier (generous limits)
+   - Click **"Create new project"**
+   - Wait 1-2 minutes for project setup
+
+3. **Get Connection String**
+   - Once project is ready, go to **Settings** → **Database**
+   - Scroll down to **"Connection string"** section
+   - Select **"URI"** tab
+   - Copy the connection string (format: `postgresql://postgres:[YOUR-PASSWORD]@db.xxxxx.supabase.co:5432/postgres`)
+   - **Important**: Replace `[YOUR-PASSWORD]` with the database password you created
+   - The final string should look like: `postgresql://postgres:yourpassword@db.xxxxx.supabase.co:5432/postgres`
+
+4. **Database Table Creation**
+   - The table will be created automatically on first use
+   - No manual SQL needed - the application handles table creation
+
+## Step 6: Configure Environment Variables
 
 ### Backend Environment Variables
 
@@ -77,7 +110,12 @@ In the Render dashboard, go to your **backend service** → **Environment** tab 
    - Can be the same as GMAIL_EMAIL or different
    - Set as **Secret** (recommended)
 
-4. **PYTHON_VERSION**
+4. **DATABASE_URL**
+   - Your Supabase PostgreSQL connection string
+   - See "Setting Up Supabase Database" section below for instructions
+   - Set as **Secret** (required)
+
+5. **PYTHON_VERSION**
    - Already set in `render.yaml` to `3.11`
    - No action needed
 
@@ -90,7 +128,7 @@ In the Render dashboard, go to your **frontend service** → **Environment** tab
    - **Important**: After your backend deploys, copy its URL and update this value
    - The URL format is: `https://[service-name].onrender.com`
 
-## Step 6: Deploy
+## Step 7: Deploy
 
 1. **Backend Deployment**
    - Render will automatically start building and deploying
@@ -108,7 +146,7 @@ In the Render dashboard, go to your **frontend service** → **Environment** tab
    - Wait for deployment to complete
    - Your site will be available at: `https://firsttask-frontend.onrender.com`
 
-## Step 7: Test Your Deployment
+## Step 8: Test Your Deployment
 
 1. **Test Health Endpoint**
    - Visit: `https://firsttask-backend.onrender.com/health`
@@ -140,10 +178,13 @@ In the Render dashboard, go to your **frontend service** → **Environment** tab
   - Check that `startCommand` in `render.yaml` is correct
   - Review logs for specific error messages
 
-**Problem**: Database not persisting
+**Problem**: Database connection fails
 - **Solution**: 
-  - Verify disk mount path in `render.yaml` matches: `/opt/render/project/src/server`
-  - Check that disk is attached in Render dashboard → **Disks** tab
+  - Verify `DATABASE_URL` is set correctly in Render dashboard
+  - Ensure connection string includes your actual password (replace `[YOUR-PASSWORD]`)
+  - Check that Supabase project is active and not paused
+  - Verify connection string format: `postgresql://postgres:password@host:port/database`
+  - Check backend logs for specific database connection errors
 
 **Problem**: Email not sending
 - **Solution**:
@@ -178,6 +219,13 @@ In the Render dashboard, go to your **frontend service** → **Environment** tab
   - Wait a few minutes after deployment
   - Check service status in Render dashboard
   - Verify service is not suspended (free tier has limits)
+
+**Problem**: Supabase project paused
+- **Solution**:
+  - Free tier projects pause after 1 week of inactivity
+  - Go to Supabase dashboard and click **"Restore"** to reactivate
+  - Project will be ready in 1-2 minutes
+  - Consider using a monitoring service to keep it active
 
 ## Minimizing Spin-Down Delays
 
@@ -218,27 +266,38 @@ Use a free uptime monitoring service to ping your health endpoint:
 
 ### Viewing Submissions
 
-Your SQLite database is stored on a persistent disk. To view submissions:
+Your Supabase PostgreSQL database can be accessed through:
 
-1. **Using Render Shell** (if available on your plan)
-   - Connect via SSH to your backend service
-   - Navigate to `/opt/render/project/src/server`
-   - Use SQLite CLI: `sqlite3 submissions.db`
+1. **Supabase Dashboard** (Recommended)
+   - Go to your Supabase project dashboard
+   - Navigate to **Table Editor** in the left sidebar
+   - Click on the `submissions` table
+   - View all submissions with a user-friendly interface
+   - Can edit, filter, and sort submissions directly
 
-2. **Download Database File**
-   - Render dashboard → Backend service → **Disks** tab
-   - Download the database file
-   - Open with [DB Browser for SQLite](https://sqlitebrowser.org/)
+2. **Supabase SQL Editor**
+   - Go to **SQL Editor** in Supabase dashboard
+   - Run queries like: `SELECT * FROM submissions ORDER BY timestamp DESC;`
+   - Create custom queries and views
 
 3. **Add Admin Endpoint** (optional)
    - You can add a protected endpoint to view submissions via API
    - Requires authentication for security
+   - Can use Supabase Auth for secure access
 
 ### Backing Up Database
 
-- The database file is automatically persisted on Render's disk
-- For additional backup, periodically download the database file
-- Or set up automated backups via Render's backup features (if available)
+- Supabase automatically backs up your database
+- Free tier includes point-in-time recovery
+- Manual backups: Use Supabase dashboard → **Database** → **Backups**
+- Export data: Use SQL Editor to export CSV or use Supabase CLI
+
+### Database Limits (Free Tier)
+
+- **Database Size**: 500MB
+- **Bandwidth**: 2GB/month
+- **Database Connections**: Limited concurrent connections
+- **API Requests**: Unlimited (within bandwidth limits)
 
 ## Monitoring and Maintenance
 
@@ -273,15 +332,17 @@ Your SQLite database is stored on a persistent disk. To view submissions:
 
 - **Current setup**: $0/month (free tier)
 - **If you need always-on**: $14/month ($7 × 2 services)
-- **Database**: Included (SQLite on disk, no additional cost)
+- **Database**: $0/month (Supabase free tier - 500MB database, 2GB bandwidth)
 
 ## Next Steps
 
-1. ✅ Deploy to Render.com
-2. ✅ Test all functionality
-3. ✅ Set up uptime monitoring (optional)
-4. ✅ Monitor logs for first few days
-5. ✅ Consider custom domain (requires paid tier)
+1. ✅ Set up Supabase database
+2. ✅ Deploy to Render.com
+3. ✅ Configure DATABASE_URL environment variable
+4. ✅ Test all functionality
+5. ✅ Set up uptime monitoring (optional)
+6. ✅ Monitor logs for first few days
+7. ✅ Consider custom domain (requires paid tier)
 
 ## Support Resources
 
@@ -294,8 +355,11 @@ Your SQLite database is stored on a persistent disk. To view submissions:
 - Never commit `.env` files to Git
 - Use Render's secret environment variables for sensitive data
 - Keep your Gmail app password secure
-- Regularly rotate app passwords
+- Keep your Supabase database password secure
+- Never commit `DATABASE_URL` to version control
+- Regularly rotate app passwords and database passwords
 - Monitor logs for suspicious activity
+- Use Supabase Row Level Security (RLS) for production applications
 
 ---
 
