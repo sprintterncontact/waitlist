@@ -6,6 +6,17 @@ import os
 # Create blueprint for routes
 api = Blueprint('api', __name__)
 
+@api.route('/health', methods=['GET'])
+def health_check():
+    """
+    Health check endpoint for Render.com monitoring.
+    Returns 200 OK to indicate the service is running.
+    """
+    return jsonify({
+        'status': 'healthy',
+        'service': 'firsttask-backend'
+    }), 200
+
 @api.route('/api/submit', methods=['POST'])
 def submit_form():
     """
