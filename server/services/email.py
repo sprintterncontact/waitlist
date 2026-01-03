@@ -76,7 +76,7 @@ We'll coordinate a time that works for both of us.
 Looking forward to speaking with you!
 
 Best regards,
-The FirstTask Team
+The Sprinttern Team
 """
         
         msg.attach(MIMEText(body, 'plain'))

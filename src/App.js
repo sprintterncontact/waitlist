@@ -536,6 +536,18 @@ function App() {
               {isSubmitting ? 'Submitting...' : 'Request pilot access'}
             </button>
           </form>
+          
+          <div className="founder-credibility">
+            <p className="credibility-text">
+              Built by a founder who's worked inside high-growth UK tech teams (Monzo, incident.io).
+            </p>
+            <p className="credibility-text">
+              The goal is simple: get real work done for businesses, and real experience for students.
+            </p>
+            <a href="https://www.linkedin.com/in/anthony-oparaocha-287633271/" target="_blank" rel="noopener noreferrer" className="credibility-link">
+              View founder profile →
+            </a>
+          </div>
         </div>
       </section>
 

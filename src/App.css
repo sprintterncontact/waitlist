@@ -741,6 +741,40 @@ section {
   display: none;
 }
 
+/* Founder Credibility */
+.founder-credibility {
+  max-width: 640px;
+  margin: 32px auto 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--light-grey);
+  text-align: center;
+}
+
+.credibility-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0 0 8px 0;
+}
+
+.credibility-text:last-of-type {
+  margin-bottom: 12px;
+}
+
+.credibility-link {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #64748b;
+  text-decoration: none;
+  margin-top: 4px;
+  transition: text-decoration 0.2s ease;
+}
+
+.credibility-link:hover {
+  text-decoration: underline;
+}
+
 /* Footer */
 .footer {
   background-color: var(--primary-navy);
