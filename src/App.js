@@ -80,60 +80,21 @@ function App() {
 
       {/* Hero Section */}
       <section className="hero">
-        <div className="hero-visual hero-visual-1"></div>
-        <div className="hero-visual hero-visual-2"></div>
         <div className="container">
-          <div className="hero-content-wrapper">
-            <h1 className="hero-headline">
-              Get small business tasks done quickly — without hiring or long-term commitment
-            </h1>
-            <p className="hero-clarifying-line">
-              Short, fixed-scope tasks completed by vetted university students.
-            </p>
-            <p className="hero-subheadline">
-              We're onboarding a small number of businesses to ensure quality during our limited pilot programme.
-            </p>
-            <a href="#waitlist-form" className="cta-button primary">
-              Request pilot access
-            </a>
-          </div>
-          <div className="hero-icons">
-            <div className="hero-icon hero-icon-1">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="hero-icon hero-icon-2">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="9" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="hero-icon hero-icon-3">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="hero-icon hero-icon-4">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="12" cy="12" r="10" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12 6v6l4 2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="hero-icon hero-icon-5">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="hero-icon hero-icon-6">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M9 11l3 3L22 4" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+          <div className="hero-card">
+            <div className="hero-content-wrapper">
+              <h1 className="hero-headline">
+                Get small business tasks done quickly - without hiring or long-term commitment
+              </h1>
+              <p className="hero-clarifying-line">
+                Short, fixed-scope tasks completed by vetted university students.
+              </p>
+              <p className="hero-subheadline">
+                We're onboarding a small number of businesses to ensure quality during our limited pilot programme.
+              </p>
+              <a href="#waitlist-form" className="cta-button primary">
+                Request pilot access
+              </a>
             </div>
           </div>
         </div>
@@ -148,7 +109,6 @@ function App() {
 
       {/* What This Is */}
       <section className="what-this-is">
-        <div className="section-visual section-visual-left"></div>
         <div className="container">
           <h2 className="section-title">What This Is</h2>
           <div className="bullet-list">
@@ -266,7 +226,7 @@ function App() {
 
             <div className="model-payoff">
               <p className="payoff-text">
-                For many businesses, this is also a way to support someone at the start of their career — without hiring risk.
+                For many businesses, this is also a way to support someone at the start of their career - without hiring risk.
               </p>
             </div>
           </div>
@@ -282,7 +242,6 @@ function App() {
 
       {/* Example Tasks */}
       <section className="example-tasks">
-        <div className="section-visual section-visual-right"></div>
         <div className="container">
           <h2 className="section-title">Example Tasks</h2>
           <div className="tasks-grid">
@@ -362,7 +321,6 @@ function App() {
 
       {/* How It Works */}
       <section className="how-it-works">
-        <div className="section-visual section-visual-center"></div>
         <div className="container">
           <h2 className="section-title">How It Works</h2>
           <div className="steps-container">
@@ -448,7 +406,6 @@ function App() {
 
       {/* Waitlist Form */}
       <section id="waitlist-form" className="waitlist-form">
-        <div className="section-visual section-visual-form"></div>
         <div className="container">
           <div className="form-header">
             <h2 className="section-title">Request Pilot Access</h2>
@@ -522,7 +479,13 @@ function App() {
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="timeline">Timeline</label>
+                <label htmlFor="timeline">
+                  Timeline
+                  <span className="info-tooltip">
+                    <span className="info-icon">i</span>
+                    <span className="info-text">When would you like to be matched with a student by?</span>
+                  </span>
+                </label>
                 <select
                   id="timeline"
                   name="timeline"

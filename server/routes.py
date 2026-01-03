@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.database import save_submission
+from services.database import save_submission, get_all_submissions
 from services.email import send_confirmation_email, send_notification_email
 import os
 
@@ -78,6 +78,42 @@ def submit_form():
             'success': False,
             'message': str(e)
         }), 400
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Server error: {str(e)}'
+        }), 500
+
+
+@api.route('/api/submissions', methods=['GET'])
+def get_submissions():
+    """
+    Get all submissions (protected by simple API key).
+    Pass ?key=YOUR_ADMIN_KEY to access.
+    """
+    try:
+        admin_key = os.environ.get('ADMIN_KEY')
+        provided_key = request.args.get('key')
+        
+        if not admin_key:
+            return jsonify({
+                'success': False,
+                'message': 'Admin access not configured'
+            }), 403
+        
+        if provided_key != admin_key:
+            return jsonify({
+                'success': False,
+                'message': 'Unauthorized'
+            }), 401
+        
+        submissions = get_all_submissions()
+        return jsonify({
+            'success': True,
+            'count': len(submissions),
+            'submissions': submissions
+        }), 200
+        
     except Exception as e:
         return jsonify({
             'success': False,
