@@ -67,6 +67,14 @@ function App() {
     }
   };
 
+  const handleScrollToWaitlist = (e) => {
+    e.preventDefault();
+    const waitlistForm = document.getElementById('waitlist-form');
+    if (waitlistForm) {
+      waitlistForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="App">
       {/* Header */}
@@ -92,9 +100,9 @@ function App() {
               <p className="hero-subheadline">
                 We're onboarding a small number of businesses to ensure quality during our limited pilot programme.
               </p>
-              <a href="#waitlist-form" className="cta-button primary">
+              <button onClick={handleScrollToWaitlist} className="cta-button primary">
                 Request pilot access
-              </a>
+              </button>
             </div>
           </div>
         </div>
