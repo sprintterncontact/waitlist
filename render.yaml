@@ -16,8 +16,6 @@ services:
         sync: false
       - key: PYTHON_VERSION
         value: 3.11
-    # Note: Disk removed for free tier compatibility
-    # For persistent storage, consider using a free database service like Supabase or upgrade to paid tier
 
   - type: web
     name: firsttask-frontend
