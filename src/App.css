@@ -784,8 +784,200 @@ section {
 /* Responsive Design - Large Screens */
 @media (min-width: 1440px) {
   .container {
-    max-width: 1400px;
+    max-width: 1280px;
     padding: 0 48px;
+  }
+
+  .hero {
+    padding: 80px 0 100px;
+  }
+
+  .hero-card {
+    max-width: 960px;
+    padding: 64px 64px 56px;
+  }
+
+  .hero-headline {
+    font-size: 50px;
+    max-width: 840px;
+    margin-bottom: 24px;
+  }
+
+  .hero-clarifying-line {
+    font-size: 20px;
+    max-width: 700px;
+    margin-bottom: 18px;
+  }
+
+  .hero-subheadline {
+    font-size: 17px;
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+
+  .cta-button {
+    padding: 20px 56px;
+    font-size: 17px;
+  }
+
+  section {
+    padding: 100px 0;
+  }
+
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 56px;
+  }
+
+  .bullet-list {
+    max-width: 860px;
+    gap: 18px;
+  }
+
+  .bullet-item.card {
+    padding: 28px 36px;
+  }
+
+  .bullet-content h3 {
+    font-size: 18px;
+  }
+
+  .bullet-content p {
+    font-size: 16px;
+  }
+
+  .model-content {
+    max-width: 860px;
+  }
+
+  .model-text {
+    font-size: 19px;
+  }
+
+  .model-benefits {
+    gap: 24px;
+  }
+
+  .benefit-item {
+    padding: 24px;
+  }
+
+  .benefit-item p {
+    font-size: 16px;
+  }
+
+  .tasks-grid {
+    max-width: 1120px;
+    gap: 24px;
+  }
+
+  .task-card {
+    padding: 32px;
+  }
+
+  .task-card h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .task-card p {
+    font-size: 15px;
+  }
+
+  .task-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 18px;
+  }
+
+  .steps-container {
+    max-width: 1040px;
+    gap: 40px;
+  }
+
+  .step {
+    padding: 36px 28px;
+  }
+
+  .step-number {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+    margin-bottom: 22px;
+  }
+
+  .step h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    font-size: 15px;
+  }
+
+  .trust-section {
+    padding: 80px 0;
+  }
+
+  .trust-grid {
+    max-width: 1040px;
+    gap: 24px;
+  }
+
+  .trust-card {
+    padding: 32px 28px;
+  }
+
+  .trust-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 14px;
+  }
+
+  .trust-card h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .trust-card p {
+    font-size: 14px;
+  }
+
+  .form {
+    max-width: 720px;
+    padding: 48px;
+  }
+
+  .form-group label {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+
+  .submit-button {
+    padding: 18px 36px;
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1480px;
+    padding: 0 64px;
+  }
+
+  .site-header {
+    padding: 24px 0;
+  }
+
+  .logo {
+    font-size: 28px;
   }
 
   .hero {
@@ -793,25 +985,26 @@ section {
   }
 
   .hero-card {
-    max-width: 1100px;
-    padding: 80px 80px 72px;
+    width: 88%;
+    max-width: 1200px;
+    padding: 72px 80px 64px;
   }
 
   .hero-headline {
-    font-size: 56px;
-    max-width: 960px;
-    margin-bottom: 24px;
+    font-size: 58px;
+    max-width: 1000px;
+    margin-bottom: 28px;
   }
 
   .hero-clarifying-line {
-    font-size: 22px;
-    max-width: 760px;
+    font-size: 23px;
+    max-width: 800px;
     margin-bottom: 20px;
   }
 
   .hero-subheadline {
     font-size: 18px;
-    max-width: 640px;
+    max-width: 680px;
     margin-bottom: 44px;
   }
 
@@ -825,12 +1018,12 @@ section {
   }
 
   .section-title {
-    font-size: 40px;
+    font-size: 42px;
     margin-bottom: 64px;
   }
 
   .bullet-list {
-    max-width: 960px;
+    max-width: 1000px;
     gap: 20px;
   }
 
@@ -838,8 +1031,19 @@ section {
     padding: 32px 40px;
   }
 
+  .bullet-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bullet-icon {
+    width: 26px;
+    height: 26px;
+  }
+
   .bullet-content h3 {
     font-size: 20px;
+    margin-bottom: 6px;
   }
 
   .bullet-content p {
@@ -847,11 +1051,11 @@ section {
   }
 
   .model-content {
-    max-width: 960px;
+    max-width: 1000px;
   }
 
   .model-text {
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .model-benefits {
@@ -860,28 +1064,49 @@ section {
 
   .benefit-item {
     padding: 28px;
+    gap: 18px;
+  }
+
+  .benefit-icon {
+    width: 40px;
+    height: 40px;
   }
 
   .benefit-item p {
     font-size: 17px;
   }
 
+  .model-human-note {
+    padding: 24px 32px;
+  }
+
+  .human-text {
+    font-size: 17px;
+  }
+
+  .model-reassurance {
+    padding: 28px;
+  }
+
+  .reassurance-text {
+    font-size: 17px;
+  }
+
+  .model-payoff {
+    padding: 28px;
+  }
+
+  .payoff-text {
+    font-size: 18px;
+  }
+
   .tasks-grid {
-    max-width: 1280px;
+    max-width: 1320px;
     gap: 28px;
   }
 
   .task-card {
     padding: 36px;
-  }
-
-  .task-card h3 {
-    font-size: 19px;
-    margin-bottom: 12px;
-  }
-
-  .task-card p {
-    font-size: 16px;
   }
 
   .task-icon {
@@ -890,25 +1115,34 @@ section {
     margin-bottom: 20px;
   }
 
+  .task-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .task-card p {
+    font-size: 16px;
+  }
+
   .steps-container {
     max-width: 1200px;
     gap: 48px;
   }
 
   .step {
-    padding: 40px 32px;
+    padding: 40px 36px;
   }
 
   .step-number {
-    width: 56px;
-    height: 56px;
-    font-size: 24px;
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
     margin-bottom: 24px;
   }
 
   .step h3 {
     font-size: 19px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .step p {
@@ -943,9 +1177,31 @@ section {
     font-size: 15px;
   }
 
+  .waitlist-form {
+    padding: 120px 0;
+  }
+
+  .form-header {
+    margin-bottom: 48px;
+  }
+
+  .form-helper {
+    font-size: 16px;
+    margin-top: -44px;
+  }
+
   .form {
-    max-width: 800px;
+    max-width: 840px;
     padding: 56px;
+  }
+
+  .form-row {
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
   }
 
   .form-group label {
@@ -960,282 +1216,26 @@ section {
     font-size: 17px;
   }
 
-  .submit-button {
-    padding: 20px 40px;
-    font-size: 18px;
-  }
-}
-
-@media (min-width: 1920px) {
-  .container {
-    max-width: 1700px;
-    padding: 0 80px;
-  }
-
-  .site-header {
-    padding: 28px 0;
-  }
-
-  .logo {
-    font-size: 32px;
-  }
-
-  .hero {
-    padding: 140px 0 160px;
-  }
-
-  .hero-card {
-    width: 85%;
-    max-width: 1500px;
-    padding: 100px 120px 96px;
-  }
-
-  .hero-headline {
-    font-size: 76px;
-    max-width: 1300px;
-    margin-bottom: 32px;
-  }
-
-  .hero-clarifying-line {
-    font-size: 28px;
-    max-width: 1000px;
-    margin-bottom: 28px;
-  }
-
-  .hero-subheadline {
-    font-size: 22px;
-    max-width: 800px;
-    margin-bottom: 56px;
-  }
-
-  .cta-button {
-    padding: 28px 88px;
-    font-size: 21px;
-  }
-
-  section {
-    padding: 160px 0;
-  }
-
-  .section-title {
-    font-size: 52px;
-    margin-bottom: 88px;
-  }
-
-  .bullet-list {
-    max-width: 1300px;
-    gap: 28px;
-  }
-
-  .bullet-item.card {
-    padding: 44px 56px;
-  }
-
-  .bullet-icon-wrapper {
-    width: 56px;
-    height: 56px;
-  }
-
-  .bullet-icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .bullet-content h3 {
-    font-size: 26px;
-    margin-bottom: 10px;
-  }
-
-  .bullet-content p {
-    font-size: 20px;
-  }
-
-  .model-content {
-    max-width: 1300px;
-  }
-
-  .model-text {
-    font-size: 26px;
-  }
-
-  .model-benefits {
-    gap: 36px;
-  }
-
-  .benefit-item {
-    padding: 36px;
-    gap: 24px;
-  }
-
-  .benefit-icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .benefit-item p {
-    font-size: 21px;
-  }
-
-  .model-human-note {
-    padding: 32px 40px;
-  }
-
-  .human-text {
-    font-size: 20px;
-  }
-
-  .model-reassurance {
-    padding: 36px;
-  }
-
-  .reassurance-text {
-    font-size: 20px;
-  }
-
-  .model-payoff {
-    padding: 36px;
-  }
-
-  .payoff-text {
-    font-size: 22px;
-  }
-
-  .tasks-grid {
-    max-width: 1600px;
-    gap: 36px;
-  }
-
-  .task-card {
-    padding: 48px;
-  }
-
-  .task-icon {
-    width: 52px;
-    height: 52px;
-    margin-bottom: 28px;
-  }
-
-  .task-card h3 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-
-  .task-card p {
-    font-size: 19px;
-  }
-
-  .steps-container {
-    max-width: 1500px;
-    gap: 72px;
-  }
-
-  .step {
-    padding: 56px 48px;
-  }
-
-  .step-number {
-    width: 76px;
-    height: 76px;
-    font-size: 32px;
-    margin-bottom: 32px;
-  }
-
-  .step h3 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-
-  .step p {
-    font-size: 19px;
-  }
-
-  .trust-section {
-    padding: 140px 0;
-  }
-
-  .trust-grid {
-    max-width: 1500px;
-    gap: 40px;
-  }
-
-  .trust-card {
-    padding: 48px 40px;
-  }
-
-  .trust-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 24px;
-  }
-
-  .trust-card h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-  }
-
-  .trust-card p {
-    font-size: 18px;
-  }
-
-  .waitlist-form {
-    padding: 160px 0;
-  }
-
-  .form-header {
-    margin-bottom: 64px;
-  }
-
-  .form-helper {
-    font-size: 18px;
-    margin-top: -56px;
-  }
-
-  .form {
-    max-width: 1000px;
-    padding: 80px;
-  }
-
-  .form-row {
-    gap: 32px;
-    margin-bottom: 32px;
-  }
-
-  .form-group {
-    margin-bottom: 32px;
-  }
-
-  .form-group label {
-    font-size: 19px;
-    margin-bottom: 14px;
-  }
-
-  .form-group input,
-  .form-group select,
   .form-group textarea {
-    padding: 20px 24px;
-    font-size: 19px;
-  }
-
-  .form-group textarea {
-    min-height: 180px;
+    min-height: 140px;
   }
 
   .submit-button {
-    padding: 26px 56px;
-    font-size: 21px;
-    margin-top: 20px;
+    padding: 20px 44px;
+    font-size: 18px;
+    margin-top: 12px;
   }
 
   .footer {
-    padding: 64px 0;
+    padding: 48px 0;
   }
 
   .footer-brand {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   .footer p {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
